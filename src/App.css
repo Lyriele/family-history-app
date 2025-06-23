@@ -699,16 +699,12 @@ body {
 }
 
 
-/* src/App.css */
-
 /* --- Male Node Colors --- */
-/* Target the rect (background shape) inside male nodes */
 svg.tree .node.male > rect {
   fill: #039be5 !important; /* Example: A shade of blue */
 }
 
 /* --- Female Node Colors --- */
-/* Target the rect (background shape) inside female nodes */
 svg.tree .node.female > rect {
   fill: #FF69B4 !important; /* Example: Hot Pink */
 }
@@ -724,10 +720,7 @@ svg.tree .node.female > rect:hover {
 
 /* extra buttons */
 
-/* Add these new button styles to your App.css */
-
 /* --- Cancel Button --- */
-/* Makes the Cancel button look like a softer, secondary button */
 .button-cancel {
   /* Inherit base button styles */
   display: inline-flex;
@@ -867,8 +860,6 @@ svg.tree .node.female > rect:hover {
   line-height: 1.5;
 }
 
-
-/* src/App.css */
 
 /* --- For Relationship Lists in Member Cards --- */
 .relationship-list {

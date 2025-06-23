@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import './App.css'; // Assuming your modal-overlay and modal-content styles are here
 
-const WelcomeModal = ({ showModal, onClose }) => {
+const WelcomeModal = ({ showModal, onClose, onLoginClick, onContinueAsGuest }) => {
   const modalRef = useRef();
 
   // Close modal if clicked outside
@@ -31,9 +31,12 @@ const WelcomeModal = ({ showModal, onClose }) => {
           your data is <strong>private</strong> and <strong>only accessible by you</strong>.
         </p>
         <div className="modal-actions-center">
-          <button onClick={onClose} className="button-submit-indigo">
-            Got It!
-          </button>
+        <button onClick={onLoginClick} style={{ marginRight: '10px' }}>
+          Login to save records
+        </button>
+        <button onClick={onContinueAsGuest}>
+          Continue as Guest
+        </button>
         </div>
       </div>
     </div>
