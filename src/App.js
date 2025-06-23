@@ -1,4 +1,4 @@
-/* global __app_id, __firebase_config, __initial_auth_token, global FamilyTree */
+/* global __app_id, __firebase_config, __initial_auth_token */
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { initializeApp } from 'firebase/app';
 import {
@@ -467,7 +467,7 @@ const App = () => {
     }
   };
 
-  
+
   // Initialize Firebase and handle authentication
   useEffect(() => {
     try {
