@@ -1,38 +1,926 @@
-.App {
-  text-align: center;
+/* ===== CSS Reset & Base Styles ===== */
+:root {
+  /* Color System - Softer, more harmonious palette */
+  --primary-500: #8c73ff; /* Softer violet */
+  --primary-600: #6a4ccf; /* Deeper violet */
+  --primary-100: #e8e0ff; /* Very light lavender */
+
+  --secondary-500: #a7aaff; /* Gentle periwinkle */
+  --secondary-600: #8080c0; /* Deeper periwinkle */
+
+  --danger-500: #ff708e; /* Soft rose */
+  --danger-600: #e04f6f; /* Deeper rose */
+
+  --warning-500: #ffcc80; /* Muted orange */
+  --warning-600: #e6b366; /* Deeper muted orange */
+
+  --success-500: #a8e0a8; /* Gentle sage green */
+  --success-600: #8ecf8e; /* Deeper sage green */
+
+  --gray-50: #fcfbff; /* Almost white with a hint of warmth */
+  --gray-100: #f8f6fa; /* Light, soft gray */
+  --gray-200: #edeaee; /* Slightly darker soft gray */
+  --gray-300: #ddd9e0; /* Medium soft gray */
+  --gray-500: #9b95a3; /* Muted darker gray */
+  --gray-700: #5c556b; /* Deeper muted gray */
+  --gray-900: #2d2938; /* Softest dark charcoal */
+  --white: #ffffff;
+
+  /* Accent Colors for specific elements */
+  --accent-light: #f0f4f8; /* For subtle backgrounds or borders */
+  --accent-medium: #cce0f0; /* For slightly more noticeable elements */
+
+  /* Spacing System - Remains consistent for structure */
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Typography - Slight adjustments for softness */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* Shadows - Lighter, more diffused for a softer look */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.1);
+
+  /* Border Radius - Slightly more rounded for softness */
+  --radius-sm: 0.375rem; /* ~6px */
+  --radius-md: 0.625rem; /* ~10px */
+  --radius-lg: 1rem; /* ~16px */
+  --radius-xl: 1.5rem; /* ~24px */
+  --radius-full: 9999px;
+
+  /* Transitions - Smoother, gentler transitions */
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Global Box Sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html {
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
+/* Body Styles - Soft background, gentle text color */
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+  line-height: 1.6; /* Slightly increased line height for readability and softness */
+  text-rendering: optimizeLegibility; /* Enhances font rendering */
+}
+
+#root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* ===== Layout Components ===== */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header - Soft gradient, subtle shadow, light text */
+.app-header {
+  background: linear-gradient(to right, var(--primary-500) 0%, var(--secondary-500) 100%);
+  padding: var(--space-md) var(--space-lg); /* Slightly more horizontal padding */
+  box-shadow: var(--shadow-md);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  border-bottom-left-radius: var(--radius-lg); /* Soft corner */
+  border-bottom-right-radius: var(--radius-lg); /* Soft corner */
+}
+
+.app-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  letter-spacing: -0.015em; /* Slightly less tight for softness */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.user-id-display {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+.user-id-value {
+  font-family: 'Roboto Mono', monospace; /* More aesthetic monospace font */
+  background-color: rgba(255, 255, 255, 0.25); /* Slightly more opaque for readability */
+  border-radius: var(--radius-sm);
+  padding: var(--space-xxs) var(--space-xs);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Navigation Tabs - Soft background, gentle hover, subtle border */
+.nav-tabs {
+  background-color: var(--white);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-sm) var(--space-lg); /* Consistent padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--gray-200); /* Gentle separation */
+}
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  position: relative; /* For the soft underline effect */
+}
+
+.tab-button.active-tab {
+  background-color: var(--primary-100);
+  color: var(--primary-600);
+  font-weight: 600; /* Slightly bolder for active state */
+  box-shadow: var(--shadow-sm); /* Subtle depth */
+}
+
+.tab-button:not(.active-tab) {
+  color: var(--gray-500);
+}
+
+.tab-button:not(.active-tab):hover {
+  background-color: var(--gray-50);
+  color: var(--primary-500); /* Hint of primary color on hover */
+}
+
+/* Zoom Controls - Integrated look with softer buttons */
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-right: var(--space-sm);
+}
+
+.button-zoom {
+  background-color: var(--secondary-500);
+  color: var(--white);
+  border: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full); /* Pill shape for softness */
+  cursor: pointer;
+  font-size: var(--text-sm);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm); /* Subtle shadow */
+}
+
+.button-zoom:hover:not(:disabled) {
+  background-color: var(--secondary-600); /* Deeper secondary on hover */
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.button-zoom:disabled {
+  background-color: var(--gray-300);
+  cursor: not-allowed;
+  opacity: 0.6; /* Softer opacity */
+}
+
+.zoom-level-display {
+  font-weight: 600;
+  color: var(--gray-700);
+  min-width: 55px; /* Slightly wider for better centering */
+  text-align: center;
+  background-color: var(--gray-50);
+  border-radius: var(--radius-md);
+  padding: var(--space-xxs) var(--space-xs);
+  border: 1px solid var(--gray-200);
+}
+
+/* Main Content - Wider max-width, softer margins */
+.main-content {
+  width: 100%;
+  max-width: 1600px; /* Increased max-width for more breathing room */
+  margin: var(--space-2xl) auto; /* More vertical space */
+  padding: 0 var(--space-xl); /* Increased horizontal padding */
+  flex-grow: 1;
+}
+
+.content-card {
+  background-color: var(--white);
+  border-radius: var(--radius-xl); /* Softer, larger radius */
+  box-shadow: var(--shadow-lg); /* More diffused shadow */
+  padding: var(--space-2xl); /* More internal padding */
+  margin-bottom: var(--space-2xl); /* More space between cards */
+  border: 1px solid var(--gray-100); /* Subtle border for definition */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smooth transition */
+}
+
+.content-card:hover {
+  transform: translateY(-3px); /* Gentle lift on hover */
+  box-shadow: var(--shadow-md); /* Slightly more prominent shadow on hover */
+}
+
+.content-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-xl); /* More space below title */
+  letter-spacing: -0.01em;
+}
+
+.content-title-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.01em;
+}
+
+.empty-message {
+  color: var(--gray-500);
+  text-align: center;
+  padding: var(--space-2xl) 0;
+  font-size: var(--text-lg);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Buttons - More pill-shaped, softer shadows, better hover effects */
+.button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: var(--space-sm) var(--space-lg); /* More horizontal padding */
+  border-radius: var(--radius-full); /* Perfectly pill-shaped */
+  font-weight: 600; /* Slightly bolder text */
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-sm); /* Softer shadow */
+  gap: var(--space-xs);
+  font-size: var(--text-base); /* Ensure consistent button text size */
 }
 
-.App-link {
-  color: #61dafb;
+.button-primary {
+  background-color: var(--primary-500);
+  color: var(--white);
 }
 
-@keyframes App-logo-spin {
+.button-primary:hover {
+  background-color: var(--primary-600);
+  transform: translateY(-2px); /* Gentle lift */
+  box-shadow: var(--shadow); /* Slightly more pronounced shadow */
+}
+
+.button-secondary {
+  background-color: var(--white);
+  color: var(--primary-500);
+  border: 1px solid var(--primary-100);
+  box-shadow: none; /* No initial shadow for a cleaner look */
+}
+
+.button-secondary:hover {
+  background-color: var(--primary-100);
+  color: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.button-danger {
+  background-color: var(--danger-500);
+  color: var(--white);
+}
+
+.button-danger:hover {
+  background-color: var(--danger-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.button-warning {
+  background-color: var(--warning-500);
+  color: var(--gray-900); /* Darker text for better contrast on lighter warning color */
+}
+
+.button-warning:hover {
+  background-color: var(--warning-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.button-sm {
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--text-sm);
+}
+
+/* Member Cards - Softer background, gentle borders, inviting feel */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Slightly wider min-width */
+  gap: var(--space-xl); /* Increased gap */
+}
+
+.member-item-card {
+  background-color: var(--primary-100); /* Light lavender background */
+  border-radius: var(--radius-xl); /* More rounded corners */
+  padding: var(--space-xl); /* More internal padding */
+  box-shadow: var(--shadow); /* Softer shadow */
+  border: 1px solid var(--primary-100); /* Subtle border matching background */
+  transition: var(--transition);
+  position: relative; /* For potential decorative elements */
+  overflow: hidden; /* Ensures content stays within radius */
+}
+
+.member-item-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.1) 0%, transparent 70%); /* Very subtle radial gradient */
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.member-item-card:hover {
+  transform: translateY(-5px); /* More pronounced lift on hover */
+  box-shadow: var(--shadow-md); /* More visible shadow on hover */
+  border-color: var(--primary-500); /* Hint of primary on hover */
+}
+
+.member-item-name {
+  font-size: var(--text-2xl); /* Larger name */
+  font-weight: 700; /* Bolder name */
+  color: var(--primary-600);
+  margin-bottom: var(--space-sm);
+  line-height: 1.2; /* Tighter line height for name */
+}
+
+.member-item-detail {
+  color: var(--gray-700);
+  font-size: var(--text-base); /* Slightly larger detail text */
+  margin-bottom: var(--space-xxs);
+}
+
+.member-item-strong {
+  font-weight: 600; /* Bolder for emphasis */
+  color: var(--gray-900); /* Stronger color for emphasis */
+}
+
+.item-actions {
+  margin-top: var(--space-lg); /* More space above actions */
+  display: flex;
+  gap: var(--space-xs);
+}
+
+/* Family Tree Styles - Light, airy, and inviting nodes */
+#tree {
+  width: 100%;
+  min-height: 650px; /* Slightly increased min-height */
+  height: 75vh; /* Slightly increased height */
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl); /* Softer corners */
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md); /* Soft shadow */
+}
+
+.balkan-node {
+  background-color: var(--accent-light); /* Lighter, airier background */
+  border: 1px solid var(--accent-medium); /* Gentle border */
+  border-radius: var(--radius-lg); /* More rounded */
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md) var(--space-lg); /* More padding */
+  min-width: 180px; /* Slightly wider nodes */
+  text-align: center;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.balkan-node:hover {
+  transform: translateY(-3px); /* Gentle lift */
+  box-shadow: var(--shadow);
+  border-color: var(--secondary-500); /* Hint of secondary on hover */
+}
+
+.balkan-male-node {
+  background-color: #e0f6ff; /* Very light blue */
+  border-color: #a0d8ff;
+}
+
+.balkan-female-node {
+  background-color: #fff3f8; /* Very light pink */
+  border-color: #ffb8d9;
+}
+
+.balkan-unknown-node {
+  background-color: var(--gray-100);
+  border-color: var(--gray-300);
+}
+
+.balkan-node-name {
+  font-weight: 700;
+  font-size: var(--text-lg); /* Slightly larger name */
+  color: var(--gray-900); /* Stronger color for names */
+  margin-bottom: var(--space-xs);
+  line-height: 1.2;
+}
+
+.balkan-node-details {
+  font-size: var(--text-sm);
+  color: var(--gray-700); /* Darker for better readability */
+  opacity: 0.9;
+}
+
+/* Modal Styles - Soft backdrop, generous padding, smooth entrance */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(45, 41, 56, 0.6); /* Softer, muted dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  z-index: 1000; /* Higher z-index */
+  backdrop-filter: blur(4px); /* Subtle blur for depth */
+  animation: fadeIn 0.3s ease-out forwards; /* Smooth fade-in */
+}
+
+.modal-content {
+  background-color: var(--white);
+  border-radius: var(--radius-xl); /* Softer, larger radius */
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2xl); /* Generous padding */
+  width: 100%;
+  max-width: 48rem; /* Wider modal */
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px); /* Starts slightly below */
+  opacity: 0;
+  animation: slideInUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.1s; /* Smooth slide-in with delay */
+}
+
+.modal-title {
+  font-size: var(--text-3xl); /* Larger title */
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-xl);
+  line-height: 1.2;
+}
+
+/* Form Styles - Cleaner inputs, softer focus states */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg); /* More space between form elements */
+}
+
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600; /* Bolder label */
+  color: var(--gray-700);
+  margin-bottom: var(--space-xxs);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md); /* More balanced padding */
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  transition: all 0.2s ease-in-out;
+  background-color: var(--gray-50); /* Very subtle background for input */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(140, 115, 255, 0.2); /* Softer, diffused focus ring */
+  background-color: var(--white); /* White background on focus */
+}
+
+/* Notes Grid - Gentle, inviting note cards */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider notes */
+  gap: var(--space-xl);
+}
+
+.note-item-card {
+  background-color: #f8efff; /* Very light purple hue */
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow);
+  border: 1px solid #e7d8ff; /* Subtle border */
+  transition: var(--transition);
+}
+
+.note-item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-500); /* Hint of primary on hover */
+}
+
+.note-item-title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: #7a31c5; /* Deeper, richer purple */
+  margin-bottom: var(--space-sm);
+  line-height: 1.2;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+    padding: var(--space-md);
+    border-radius: 0; /* Remove rounded corners on small screens */
+  }
+
+  .header-actions {
+    margin-top: var(--space-sm);
+  }
+
+  .nav-tabs {
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+
+  .tab-container {
+    order: 1;
+    width: 100%;
+  }
+
+  .zoom-controls {
+    order: 2;
+    margin-right: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    padding: 0 var(--space-md);
+    margin: var(--space-xl) auto;
+  }
+
+  .content-card {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-content {
+    padding: var(--space-lg);
+  }
+}
+
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+
+  body {
+    background-color: var(--white);
+  }
+
+  .content-card {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #tree {
+    height: auto;
+    min-height: 0;
+    page-break-inside: avoid;
+  }
+}
+
+/* Animations - Soft fade and slide for modals */
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite; /* More elastic spin */
+  width: 28px; /* Slightly larger */
+  height: 28px;
+  border: 4px solid var(--gray-200); /* Thicker border */
+  border-top-color: var(--primary-500);
+  border-radius: 50%;
+  margin: var(--space-lg) auto; /* More margin for visibility */
+}
+
+
+.tree-animation {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+
+/* src/App.css */
+
+/* --- Male Node Colors --- */
+/* Target the rect (background shape) inside male nodes */
+svg.tree .node.male > rect {
+  fill: #039be5 !important; /* Example: A shade of blue */
+}
+
+/* --- Female Node Colors --- */
+/* Target the rect (background shape) inside female nodes */
+svg.tree .node.female > rect {
+  fill: #FF69B4 !important; /* Example: Hot Pink */
+}
+
+/* --- Optional: Hover Effects (adjust colors as desired) --- */
+svg.tree .node.male > rect:hover {
+  fill: #42a5f5 !important; /* Lighter blue on hover */
+}
+svg.tree .node.female > rect:hover {
+  fill: #FF8DC4 !important; /* Lighter pink on hover */
+}
+
+
+/* extra buttons */
+
+/* Add these new button styles to your App.css */
+
+/* --- Cancel Button --- */
+/* Makes the Cancel button look like a softer, secondary button */
+.button-cancel {
+  /* Inherit base button styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  gap: var(--space-xs);
+  font-size: var(--text-base);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  /* Specific styles for cancel */
+  background-color: var(--white);
+  color: var(--gray-700); /* Softer text color for cancel */
+  border: 1px solid var(--gray-300); /* Gentle border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.button-cancel:hover {
+  background-color: var(--gray-100); /* Lighter gray on hover */
+  color: var(--gray-900); /* Darker text on hover */
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.button-cancel:active {
+  transform: translateY(0px); /* Stays flat on active */
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Submit Indigo Button (for Update/Add Member) --- */
+.button-submit-indigo {
+  /* Inherit base button styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  gap: var(--space-xs);
+  font-size: var(--text-base);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  /* Specific styles: primary-like */
+  background: linear-gradient(to right, var(--primary-500), var(--secondary-500));
+  color: var(--white);
+  box-shadow: 0 6px 12px rgba(140, 115, 255, 0.2);
+}
+
+.button-submit-indigo:hover {
+  background: linear-gradient(to right, var(--primary-600), var(--secondary-600));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(106, 76, 207, 0.3);
+}
+
+.button-submit-indigo:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Submit Purple Button (for Update/Add Story) --- */
+.button-submit-purple {
+  /* Inherit base button styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  gap: var(--space-xs);
+  font-size: var(--text-base);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  /* Specific styles: a new, soft purple shade */
+  background: linear-gradient(to right, #9c27b0, #ce93d8); /* Muted purple to lighter purple */
+  color: var(--white);
+  box-shadow: 0 6px 12px rgba(156, 39, 176, 0.2);
+}
+
+.button-submit-purple:hover {
+  background: linear-gradient(to right, #7b1fa2, #ba68c8); /* Deeper purple on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(123, 31, 162, 0.3);
+}
+
+.button-submit-purple:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* --- Modal Actions Layout --- */
+/* To ensure buttons within modals are nicely spaced */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: var(--space-md); /* Space between buttons */
+  margin-top: var(--space-xl); /* Space above the buttons */
+  padding-top: var(--space-md); /* Internal padding */
+  border-top: 1px solid var(--gray-200); /* Gentle separator line */
+}
+
+/* For the confirm modal, if you want them centered */
+.modal-actions-center {
+  display: flex;
+  justify-content: center; /* Centers the buttons */
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Minor adjustment for the confirm modal text */
+.modal-message {
+  font-size: var(--text-base);
+  color: var(--gray-700);
+  margin-bottom: var(--space-lg);
+  text-align: center; /* Center align the message */
+  line-height: 1.5;
+}
+
+
+/* src/App.css */
+
+/* --- For Relationship Lists in Member Cards --- */
+.relationship-list {
+  display: flex;
+  flex-wrap: wrap; /* Allow names to wrap to the next line */
+  gap: 0.5rem; /* Space between each name */
+  align-items: center; /* Vertically align names */
+}
+
+.relationship-name {
+  background-color: var(--primary-100); /* A light background for each name */
+  padding: var(--space-xxs) var(--space-xs); /* Small padding */
+  border-radius: var(--radius-sm); /* Slightly rounded corners */
+  color: var(--primary-600); /* Text color matching your primary palette */
+  font-weight: 500; /* A bit less bold than the strong tag */
+  white-space: nowrap; /* Prevent names from breaking mid-word */
+}
+
+
+/* Welcome Modal */
+/* Welcome Modal Specific Styles */
+.welcome-modal-content {
+  max-width: 500px; /* Adjust as needed */
+  width: 90%;
+  padding: 30px;
+  text-align: center;
+}
+
+.welcome-modal-content .modal-message {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  color: #333; /* Darker text for readability */
+}
+
+.welcome-modal-content .modal-message strong {
+  color: #5d3fd3; /* A nice highlight color */
+}
+
+/* Ensure the button style is good, you already have button-submit-indigo */
+.button-submit-indigo {
+  background-color: #5d3fd3;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.button-submit-indigo:hover {
+  background-color: #4a2da0;
 }
