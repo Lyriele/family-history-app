@@ -187,7 +187,7 @@ const MemberModal = ({
               className="form-input"
             />
             {newMember.photoPreview && (
-              <img src={newMember.photoPreview} alt="Selected photo" style={{ width: '100px', height: '100px', objectFit: 'cover', marginTop: '10px', borderRadius: '5px' }} />
+              <img src={newMember.photoPreview} alt="Selected member preview" style={{ width: '100px', height: '100px', objectFit: 'cover', marginTop: '10px', borderRadius: '5px' }} />
             )}
           </div>
           <div>
@@ -257,7 +257,7 @@ const MemberModal = ({
   );
 };
 
-// NoteModal Component (no changes here for this request)
+// NoteModal Component 
 const NoteModal = ({
   showModal,
   onClose,
@@ -357,7 +357,7 @@ const NoteModal = ({
   );
 };
 
-// ConfirmModal Component (no changes here for this request)
+// ConfirmModal Component
 const ConfirmModal = ({
   showModal,
   onClose,
@@ -411,9 +411,11 @@ const ConfirmModal = ({
 // Main App component
 const App = () => {
   const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-  const [app, setApp] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [app, setApp] = useState(null);  
   const [db, setDb] = useState(null);
-  const [auth, setAuth] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [auth, setAuth] = useState(null); 
   const [userId, setUserId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [familyMembers, setFamilyMembers] = useState([]);
@@ -429,8 +431,8 @@ const App = () => {
     spouse: '',
     parents: [],
     children: [],
-    photo: '', // This will store the final URL for Balkan.js
-    photoFile: null, // To store the actual File object for upload
+    photo: '', 
+    photoFile: null, 
     photoPreview: null
   });
   const [newNote, setNewNote] = useState({
@@ -446,10 +448,9 @@ const App = () => {
   const [confirmAction, setConfirmAction] = useState(null);
   const [confirmMessage, setConfirmMessage] = useState('');
   const [activeTab, setActiveTab] = useState('list');
-  // NEW STATE: To control welcome modal visibility
-  const [showWelcomeModal, setShowWelcomeModal] = useState(false); // <--- ADD THIS STATE
-  // NEW STATE: To track if the welcome message has been shown to this user
-  const [hasShownWelcome, setHasShownWelcome] = useState(false); // <--- ADD THIS STATE
+const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+// eslint-disable-next-line no-unused-vars
+  const [hasShownWelcome, setHasShownWelcome] = useState(false); 
 
 
 
@@ -496,12 +497,11 @@ const App = () => {
           setUserId(user.uid);
           setIsAuthenticated(true);
 
-          // NEW LOGIC: Check if welcome message has been shown for this user
-          // This ensures the db is initialized before trying to access it
+    
           if (firestoreDb) {
             const userDocRef = doc(firestoreDb, `artifacts/${appId}/users`, user.uid);
             try {
-              const userDoc = await getDoc(userDocRef); // Need to import getDoc
+              const userDoc = await getDoc(userDocRef); 
               if (userDoc.exists()) {
                 const userData = userDoc.data();
                 if (!userData.hasSeenWelcome) {

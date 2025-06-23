@@ -1,34 +1,33 @@
 /* ===== CSS Reset & Base Styles ===== */
 :root {
-  /* Color System - Softer, more harmonious palette */
-  --primary-500: #8c73ff; /* Softer violet */
-  --primary-600: #6a4ccf; /* Deeper violet */
-  --primary-100: #e8e0ff; /* Very light lavender */
+  --primary-500: #8c73ff; 
+  --primary-600: #6a4ccf;  
+  --primary-100: #e8e0ff;  
 
-  --secondary-500: #a7aaff; /* Gentle periwinkle */
-  --secondary-600: #8080c0; /* Deeper periwinkle */
+  --secondary-500: #a7aaff;  
+  --secondary-600: #8080c0;  
 
-  --danger-500: #ff708e; /* Soft rose */
-  --danger-600: #e04f6f; /* Deeper rose */
+  --danger-500: #ff708e; 
+  --danger-600: #e04f6f; 
 
-  --warning-500: #ffcc80; /* Muted orange */
-  --warning-600: #e6b366; /* Deeper muted orange */
+  --warning-500: #ffcc80; 
+  --warning-600: #e6b366; 
 
-  --success-500: #a8e0a8; /* Gentle sage green */
-  --success-600: #8ecf8e; /* Deeper sage green */
+  --success-500: #a8e0a8; 
+  --success-600: #8ecf8e; 
 
-  --gray-50: #fcfbff; /* Almost white with a hint of warmth */
-  --gray-100: #f8f6fa; /* Light, soft gray */
-  --gray-200: #edeaee; /* Slightly darker soft gray */
-  --gray-300: #ddd9e0; /* Medium soft gray */
-  --gray-500: #9b95a3; /* Muted darker gray */
-  --gray-700: #5c556b; /* Deeper muted gray */
-  --gray-900: #2d2938; /* Softest dark charcoal */
+  --gray-50: #fcfbff; 
+  --gray-100: #f8f6fa; 
+  --gray-200: #edeaee; 
+  --gray-300: #ddd9e0; 
+  --gray-500: #9b95a3; 
+  --gray-700: #5c556b; 
+  --gray-900: #2d2938; 
   --white: #ffffff;
 
   /* Accent Colors for specific elements */
-  --accent-light: #f0f4f8; /* For subtle backgrounds or borders */
-  --accent-medium: #cce0f0; /* For slightly more noticeable elements */
+  --accent-light: #f0f4f8; 
+  --accent-medium: #cce0f0;
 
   /* Spacing System - Remains consistent for structure */
   --space-xxs: 0.25rem;
@@ -86,8 +85,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--gray-100);
   color: var(--gray-900);
-  line-height: 1.6; /* Slightly increased line height for readability and softness */
-  text-rendering: optimizeLegibility; /* Enhances font rendering */
+  line-height: 1.6; 
+  text-rendering: optimizeLegibility; 
 }
 
 #root {
