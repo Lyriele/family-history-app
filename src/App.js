@@ -14,6 +14,7 @@ import {
   doc,
   addDoc,
   getDoc,
+    // eslint-disable-next-line no-unused-vars
   setDoc,
   updateDoc,
   deleteDoc,
@@ -191,8 +192,7 @@ const MemberModal = ({
               disabled={isGuest} // NEW: Disable if guest
             />
             {newMember.photoPreview && (
-              // Alt text fixed
-              <img src={newMember.photoPreview} alt="Selected member photo preview" style={{ width: '100px', height: '100px', objectFit: 'cover', marginTop: '10px', borderRadius: '5px' }} />
+              <img src={newMember.photoPreview} alt="Selected member preview" style={{ width: '100px', height: '100px', objectFit: 'cover', marginTop: '10px', borderRadius: '5px' }} />
             )}
           </div>
           <div>
@@ -427,7 +427,7 @@ const ConfirmModal = ({
 const App = () => {
   const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
-  // Removed eslint-disable-next-line no-unused-vars as `app` and `auth` are now used directly.
+// eslint-disable-next-line no-unused-vars
   const [app, setApp] = useState(null);
   const [db, setDb] = useState(null);
   const [auth, setAuth] = useState(null);
@@ -1173,8 +1173,8 @@ const App = () => {
                 {familyMembers.sort((a,b) => a.name.localeCompare(b.name)).map(member => (
                   <li key={member.id} className="member-item">
                     <div className="member-info">
-                      {member.photo && <img src={member.photo} alt={`${member.name}'s photo`} className="member-photo-thumbnail" />}
-                      <div>
+                      {member.photo && (<img src={member.photo} alt={`${member.name}'s photo`} className="member-thumbnail" />)}                     
+                     <div>
                         <span className="member-name">{member.name} ({member.gender})</span>
                         {member.birthDate && <span className="member-dates">, b. {member.birthDate}</span>}
                         {member.deathDate && <span className="member-dates">, d. {member.deathDate}</span>}

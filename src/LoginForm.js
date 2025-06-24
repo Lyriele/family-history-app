@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Import useState
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword,          // eslint-disable-next-line no-unused-vars
+    createUserWithEmailAndPassword } from 'firebase/auth';
 
 // LoginForm component receives onLoginSuccess as a prop
 function LoginForm({ onLoginSuccess }) { // Destructure onLoginSuccess from props
