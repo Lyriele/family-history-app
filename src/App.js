@@ -192,8 +192,18 @@ const MemberModal = ({
               disabled={isGuest} // NEW: Disable if guest
             />
             {newMember.photoPreview && (
-              <img src={newMember.photoPreview} alt="Selected member preview" style={{ width: '100px', height: '100px', objectFit: 'cover', marginTop: '10px', borderRadius: '5px' }} />
-            )}
+  <img 
+    src={newMember.photoPreview} 
+    alt={`Preview of ${newMember.name || 'selected member'}`} 
+    style={{ 
+      width: '100px', 
+      height: '100px', 
+      objectFit: 'cover', 
+      marginTop: '10px', 
+      borderRadius: '5px' 
+    }} 
+  />
+)}
           </div>
           <div>
             <label htmlFor="photoUrl" className="form-label">Photo URL (from upload or manual)</label>
@@ -1173,8 +1183,8 @@ const App = () => {
                 {familyMembers.sort((a,b) => a.name.localeCompare(b.name)).map(member => (
                   <li key={member.id} className="member-item">
                     <div className="member-info">
-                      {member.photo && (<img src={member.photo} alt={`${member.name}'s photo`} className="member-thumbnail" />)}                     
-                     <div>
+                    {member.photo && <img src={member.photo} alt={member.name} className="member-photo-thumbnail" />}
+                    <div>
                         <span className="member-name">{member.name} ({member.gender})</span>
                         {member.birthDate && <span className="member-dates">, b. {member.birthDate}</span>}
                         {member.deathDate && <span className="member-dates">, d. {member.deathDate}</span>}
